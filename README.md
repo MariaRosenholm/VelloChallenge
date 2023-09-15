@@ -1,6 +1,10 @@
 # Vello Coding Challenge
 
-Welcome to the Vello coding challenge! Your mission is to finish some of the functionality of this application.
+My take on the Vello Coding challenge!
+
+Please find the provided steps from Vello that I followed to complete challenge.
+
+# Welcome to the Vello coding challenge! Your mission is to finish some of the functionality of this application.
 
 ## We'd like for you to spend around an hour or two on the task.
 
@@ -18,7 +22,7 @@ I recommend using [Node version manager](https://github.com/nvm-sh/nvm) to set y
 
 Before you can begin, [you need to create a repository this template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
 
-------
+---
 
 # The Task
 
@@ -69,19 +73,22 @@ Alex Haase alex@vello.fi
 
 Good Luck! We will be more than happy to talk about your solution.
 
+---
 
-------
-------
-------
+---
+
+---
 
 # Running the application
 
 ### Install modules
+
 ```
 $ npm ci
 ```
 
 ### Import external data
+
 ```
 $ npm run db:import
 ```
@@ -89,6 +96,7 @@ $ npm run db:import
 ###### You need to add this script yourself
 
 ### Run the application
+
 ```
 $ npm start
 ```
@@ -96,9 +104,9 @@ $ npm start
 # Testing the application
 
 First, install the modules, then run the following script:
+
 ```
 $ npm test
 ```
 
 Note that all the tests will fail until you have implemented the functionality.
-
