@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "node --test",
-    "start": "node ./src/index.js"
+    "start": "node ./src/index.js",
+    "db:import": "node ./src/import_data.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "csv": "^6.3.3",
     "express": "^4.18.2"
   },
   "type": "module"
