@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All computers</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/JS/getAllHandler.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Aclonica&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <div id="indexWrapper">
+        <div id="menu">
+          <a href="/"><button>Back to home</button></a>
+          <a href="/pages/one.html"><button>Get one</button></a>
+          <a href="/pages/add.html"><button>Add</button></a>
+          <a href="/pages/update.html"><button>Update</button></a>
+          <a href="/pages/remove.html"><button>Delete</button></a>
+        </div>
+        <h1>Index Test</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Number</th>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Address</th>
+              <th>City</th>
+            </tr>
+          </thead>
+          <tbody id="results"></tbody>
+        </table>
+        <div id="errorMessage"></div>
+      </div>
+    </main>
+  </body>
+</html>

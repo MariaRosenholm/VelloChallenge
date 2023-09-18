@@ -1,0 +1,158 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("./pictures/allTurtles.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  background-position: 0 50%;
+}
+
+main {
+  display: flex;
+  align-items: left;
+  justify-content: center;
+  flex-direction: column;
+  font-family: "Aclonica", sans-serif;
+  color: rgb(206, 201, 201);
+  height: 100vh;
+  margin-left: 5vw;
+}
+
+table {
+  margin: 3rem auto;
+  border-collapse: collapse;
+  overflow-y: scroll;
+}
+
+table,
+th,
+td {
+  padding: 1rem;
+  background-color: rgba(206, 201, 201, 0.447);
+  color: black;
+  border: 1px solid black;
+}
+
+thead {
+  background-color: rgb(206, 201, 201);
+  color: black;
+}
+
+button {
+  font-family: "Aclonica", sans-serif;
+  padding: 0.4vw;
+  font-size: 1.2rem;
+  color: rgb(206, 201, 201);
+  background-color: unset;
+  border: unset;
+  border-bottom: double 1px rgb(206, 201, 201);
+}
+
+button:hover {
+  cursor: pointer;
+  color: white;
+}
+
+h1 {
+  padding-bottom: 3vh;
+}
+
+input {
+  margin: auto 2vw;
+  height: 3vh;
+}
+
+label {
+  display: flex;
+  justify-content: right;
+  width: 15vw;
+  margin-left: 1vw;
+}
+
+.landingPage {
+  background-image: url("./pictures/turtle.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  background-position: 0% 38%;
+  align-items: center;
+}
+
+.landingPage h1 {
+  position: absolute;
+  top: 20vh;
+  font-size: 4rem;
+  padding: 5vw;
+}
+
+#menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 75%;
+  position: absolute;
+  top: 8vh;
+}
+
+#menu a {
+  width: 20%;
+}
+
+#smallMenu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 30%;
+  position: absolute;
+  top: 8vh;
+}
+
+#allTurtlesWrapper {
+  position: absolute;
+  left: 5vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#resultArea {
+  margin-top: 3vh;
+}
+
+.fields {
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  margin-bottom: 5vh;
+}
+
+#inputArea {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10vh;
+  margin-top: 3vh;
+}
+
+.submit {
+  width: 9vw;
+  margin-left: 5vw;
+}
+
+.h1Update {
+  margin-top: 15vh;
+}
+
+#messageArea {
+  position: absolute;
+  right: 15vw;
+  bottom: 5vh;
+}
