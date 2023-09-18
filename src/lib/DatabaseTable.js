@@ -1,4 +1,5 @@
 import fs from "fs";
+import { networkInterfaces } from "os";
 
 const _tables = {};
 
@@ -38,8 +39,21 @@ export default class DatabaseTable {
    * @param {document} document
    * @returns {document} the created document, including a new unique ID
    */
-  putDocument(document) {
-    let uniqueId = this.data.length++;
+  static putDocument(document) {
+    let uniqueId;
+    let data;
+    if (this.data === undefined) {
+      data = JSON.parse(
+        fs.readFileSync(
+          `${process.cwd()}/data/${_tables.person.name}.json`,
+          "utf-8"
+        )
+      );
+    } else {
+      data = this.data;
+    }
+    uniqueId = data.length++;
+
     let obj = {
       id: uniqueId,
       name: document.name,
@@ -47,7 +61,15 @@ export default class DatabaseTable {
       address: document.address,
       city: document.city,
     };
-    fs.writeFileSync(fileDir, JSON.stringify(this.data.push(obj), null, 2));
+
+    let arr = [...data];
+    arr.unshift(obj);
+    arr.pop();
+
+    fs.writeFileSync(
+      `${process.cwd()}/data/${_tables.person.name}.json`,
+      JSON.stringify(arr, null, 2)
+    );
     return obj;
   }
 
@@ -57,11 +79,22 @@ export default class DatabaseTable {
    * @param {number} id
    * @returns {document | null} document or null if not found
    */
-  getDocument(i) {
-    if (this.data.find(({ id }) => id === i) === undefined) {
+  static getDocument(i) {
+    let data;
+    if (data === undefined) {
+      data = JSON.parse(
+        fs.readFileSync(
+          `${process.cwd()}/data/${_tables.person.name}.json`,
+          "utf-8"
+        )
+      );
+    } else {
+      data = this.data;
+    }
+    if (data.find(({ id }) => id === i) === undefined) {
       return null;
     } else {
-      return this.data.find(({ id }) => id === i);
+      return data.find(({ id }) => id === i);
     }
   }
 
@@ -72,15 +105,48 @@ export default class DatabaseTable {
    * @param {*} document
    * @returns {boolean} whether the operation succeeded
    */
-  updateDocument(i, document) {
-    if (i & document) {
-      let obj = this.data.find(({ id }) => id === i);
-      obj = document;
-      let newArr = this.data.splice(this.data.map((i) => i.id).indexOf(i), 1);
-      fs.writeFileSync(fileDir, JSON.stringify(newArr.push(obj), null, 2));
-      return "New document added!";
+  static updateDocument(changeId, document) {
+    let data;
+    if (this.data === undefined) {
+      data = JSON.parse(
+        fs.readFileSync(
+          `${process.cwd()}/data/${_tables.person.name}.json`,
+          "utf-8"
+        )
+      );
     } else {
-      return "Error!";
+      data = this.data;
+    }
+
+    if (changeId && document) {
+      let obj = this.getDocument(changeId);
+      if (document.name) {
+        obj.name = document.name;
+      }
+      if (document.age) {
+        obj.age = document.age;
+      }
+      if (document.address) {
+        obj.address = document.address;
+      }
+      if (document.city) {
+        obj.city = document.city;
+      }
+
+      const objIndex = data.findIndex((obj) => obj.id === changeId);
+
+      let newArr = data.splice(objIndex, 1);
+      let arr = [...data];
+      arr.unshift(obj);
+      arr.pop();
+
+      fs.writeFileSync(
+        `${process.cwd()}/data/${_tables.person.name}.json`,
+        JSON.stringify(arr, null, 2)
+      );
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -90,13 +156,28 @@ export default class DatabaseTable {
    * @param {number} id
    * @returns {boolean} whether the operation succeeded
    */
-  deleteDocument(i) {
-    if (i) {
-      let newArr = this.data.splice(this.data.map((i) => i.id).indexOf(i), 1);
-      fs.writeFileSync(fileDir, JSON.stringify(newArr, null, 2));
-      return "The document with id" + i + " deleted!";
+  static deleteDocument(i) {
+    let data;
+    if (data === undefined) {
+      data = JSON.parse(
+        fs.readFileSync(
+          `${process.cwd()}/data/${_tables.person.name}.json`,
+          "utf-8"
+        )
+      );
     } else {
-      return "Error!";
+      data = this.data;
+    }
+    if (i) {
+      const objIndex = data.findIndex((obj) => obj.id === i);
+      let newArr = data.splice(objIndex, 1);
+      fs.writeFileSync(
+        `${process.cwd()}/data/${_tables.person.name}.json`,
+        JSON.stringify(data, null, 2)
+      );
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -107,7 +188,16 @@ export default class DatabaseTable {
    * @param {number} offsetId
    * @returns {document[]}
    */
-  indexDocuments(limit, offsetId) {
-    return this.data.slice(offsetId, limit);
+  static indexDocuments() {
+    let data;
+    if (data === undefined) {
+      data = JSON.parse(
+        fs.readFileSync(
+          `${process.cwd()}/data/${_tables.person.name}.json`,
+          "utf-8"
+        )
+      );
+      return data.slice(0, 1);
+    }
   }
 }
