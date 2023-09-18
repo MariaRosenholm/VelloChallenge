@@ -4,6 +4,7 @@ import { parse } from "csv-parse";
 
 let dataToJSON = [];
 let data = [];
+let arrays = [[], [], [], [], []];
 let rawData = [];
 
 const readData = new Promise((resolve, reject) => {
@@ -16,6 +17,25 @@ const readData = new Promise((resolve, reject) => {
       }
       resolve("Data fetched!");
     });
+
+  /* MAX HEAPS 
+  fs.createReadStream("./data-sources/person.csv")
+    .pipe(parse())
+    .on("data", (row) => {
+      let limit = 7000;
+      let offset = 0;
+      let remaining = row.length;
+      let arr = 0;
+
+      for (let i = offset; i < limit; i++) {
+        arrays[arr].push(JSON.stringify(row, null, 2).split(";"));
+        remaining = remaining - limit;
+        offset = limit;
+        limit = limit + limit;
+        i = i++;
+      }
+      resolve("Data fetched!");
+    }); */
 });
 
 const Cleaning = () => {
