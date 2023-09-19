@@ -1,9 +1,9 @@
-import express from 'express';
-import personRouter from './modules/person/routes.js';
+import express from "express";
+import personRouter from "./modules/person/routes.js";
 
 const routes = [
   {
-    name: '/person',
+    name: "/person",
     router: personRouter,
   },
 ];
@@ -17,8 +17,8 @@ for (const { name, router } of routes) {
 /**
  * Feel free to modify or remove this.
  */
-app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
   res.send('Hello world!');
-});
+});*/
 
 export default app;

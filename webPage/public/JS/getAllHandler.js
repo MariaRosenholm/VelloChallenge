@@ -4,13 +4,13 @@
   document.addEventListener("DOMContentLoaded", init);
   async function init() {
     try {
-      const data = await fetch("/");
+      const data = await fetch("/index");
       const dataJSON = await data.json();
       const resultArea = document.getElementById("results");
 
       for (let obj of dataJSON) {
         const tr = document.createElement("tr");
-        tr.appendChild(createCell(obj.number));
+        tr.appendChild(createCell(obj.id));
         tr.appendChild(createCell(obj.name));
         tr.appendChild(createCell(obj.age));
         tr.appendChild(createCell(obj.address));
@@ -20,7 +20,7 @@
     } catch (err) {
       document.getElementById(
         "errorMessage"
-      ).innerHTML = `<p class="error">${err.message}</p>`;
+      ).innerHTML = `<p class="error">${err.message}</p> ${dataJSON}`;
     }
   }
   function createCell(data) {

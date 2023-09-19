@@ -14,8 +14,8 @@ app.get("/", (req, res) =>
   res.sendFile(path.join(__dirname, "public/pages/menu.html"))
 );
 
-app.get("/", (req, res) => {
-  fetch("http://localhost:3030/", { mode: "cors" })
+app.get("/index", (req, res) => {
+  fetch("http://localhost:3030/person/", { mode: "cors" })
     .then((data) => data.json())
     .then(
       (result) => res.json(result) + console.log("indexSpa, get /" + result)
@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
 app.get("/getOne", (req, res) => {
   const number = req.body.number;
   if (number && number.length > 0) {
-    fetch(`http://localhost:3030/:id`, { mode: "cors" })
+    fetch(`http://localhost:3030/person/:id`, { mode: "cors" })
       .then((data) => data.json())
       .then(
         (result) =>
@@ -48,7 +48,7 @@ app.post("/add", (req, res) => {
     },
     body: JSON.stringify(obj),
   };
-  fetch("http://localhost:3030/", options)
+  fetch("http://localhost:3030/person/", options)
     .then((data) => data.json())
     .then(
       (result) => res.json(result) + console.log("indexSpa, add /" + result)
@@ -66,7 +66,7 @@ app.put("/update", (req, res) => {
     },
     body: JSON.stringify(obj),
   };
-  fetch(`http://localhost:3030/:id`, options)
+  fetch(`http://localhost:3030/person/:id`, options)
     .then((data) => data.json())
     .then(
       (result) => res.json(result) + console.log("indexSpa, update /" + result)
@@ -77,7 +77,7 @@ app.put("/update", (req, res) => {
 app.delete("/remove", (req, res) => {
   const number = req.body.number;
   if (number && number.length > 0) {
-    fetch(`http://localhost:3030/:id`, {
+    fetch(`http://localhost:3030/person/:id`, {
       method: "DELETE",
       mode: "cors",
     })

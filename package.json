@@ -6,6 +6,7 @@
   "scripts": {
     "test": "node --test",
     "start": "node ./src/index.js",
+    "SPA": "node ./webPage/indexSPA.js",
     "db:import": "node ./src/import_data.js"
   },
   "author": "",

@@ -9,7 +9,7 @@ const router = express.Router();
  * Create
  */
 router.post("/", (req, res) => {
-  let response = database.updateDocument({
+  let response = personTable.putDocument({
     name: req.body.name,
     age: req.body.age,
     address: req.body.address,
@@ -22,7 +22,7 @@ router.post("/", (req, res) => {
  * Retrieve
  */
 router.get("/:id", (req, res) => {
-  let response = database.getDocument(req.body.id);
+  let response = personTable.getDocument(req.body.id);
   res.send(response);
 });
 
@@ -30,7 +30,7 @@ router.get("/:id", (req, res) => {
  * Update
  */
 router.put("/:id", (req, res) => {
-  let response = database.getDocument({
+  let response = personTable.updateDocument({
     id: req.body.id,
     name: req.body.name,
     age: req.body.age,
@@ -44,7 +44,7 @@ router.put("/:id", (req, res) => {
  * Delete
  */
 router.delete("/:id", (req, res) => {
-  let response = database.getDocument(req.body.id);
+  let response = personTable.deleteDocument(req.body.id);
   res.send(response);
 });
 
@@ -52,7 +52,7 @@ router.delete("/:id", (req, res) => {
  * Index
  */
 router.get("/", (req, res) => {
-  let response = database.getDocument(req.body.limit, req.body.offsetId);
+  let response = personTable.indexDocuments();
   res.send(response);
 });
 
