@@ -4,7 +4,11 @@ My take on the Vello Coding challenge!
 
 Please find the provided steps from Vello that I followed to complete challenge.
 
-To run the SPA: $ npm run SPA
+To run the SPA:
+
+```
+$ npm run SPA
+```
 
 # Welcome to the Vello coding challenge! Your mission is to finish some of the functionality of this application.
 
