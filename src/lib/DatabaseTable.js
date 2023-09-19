@@ -1,12 +1,10 @@
 import fs from "fs";
-import { networkInterfaces } from "os";
 
 const _tables = {};
 
 export default class DatabaseTable {
   static getInstance(name, data) {
     if (!_tables[name]) _tables[name] = new DatabaseTable(name, data);
-
     return _tables[name];
   }
 
@@ -39,35 +37,29 @@ export default class DatabaseTable {
    * @param {document} document
    * @returns {document} the created document, including a new unique ID
    */
-  static putDocument(document) {
-    let uniqueId;
-    let data;
-    if (this.data === undefined) {
-      data = JSON.parse(
-        fs.readFileSync(
-          `${process.cwd()}/data/${_tables.person.name}.json`,
-          "utf-8"
-        )
-      );
-    } else {
-      data = this.data;
-    }
-    uniqueId = data.length++;
-
+  putDocument(document) {
+    let data = JSON.parse(
+      fs.readFileSync(`${process.cwd()}/data/${this.name}.json`, "utf-8")
+    );
+    let arr = [];
     let obj = {
-      id: uniqueId,
+      id: Math.floor(Math.random()) * (1000000 - 100000 + 1) + 10000,
       name: document.name,
       age: document.age,
       address: document.address,
       city: document.city,
     };
 
-    let arr = [...data];
-    arr.unshift(obj);
-    arr.pop();
+    if (data.lenght) {
+      arr = [...data];
+      arr.unshift(obj);
+      arr.pop();
+    } else {
+      arr.push(obj);
+    }
 
     fs.writeFileSync(
-      `${process.cwd()}/data/${_tables.person.name}.json`,
+      `${process.cwd()}/data/${this.name}.json`,
       JSON.stringify(arr, null, 2)
     );
     return obj;
@@ -79,22 +71,19 @@ export default class DatabaseTable {
    * @param {number} id
    * @returns {document | null} document or null if not found
    */
-  static getDocument(i) {
-    let data;
-    if (data === undefined) {
-      data = JSON.parse(
-        fs.readFileSync(
-          `${process.cwd()}/data/${_tables.person.name}.json`,
-          "utf-8"
-        )
-      );
-    } else {
-      data = this.data;
-    }
-    if (data.find(({ id }) => id === i) === undefined) {
+  getDocument(i) {
+    let data = JSON.parse(
+      fs.readFileSync(`${process.cwd()}/data/${this.name}.json`)
+    );
+
+    if (data.lenght === 0) {
       return null;
     } else {
-      return data.find(({ id }) => id === i);
+      if (data.find(({ id }) => id === i) === undefined) {
+        return null;
+      } else {
+        return data.find(({ id }) => id === i);
+      }
     }
   }
 
@@ -105,18 +94,11 @@ export default class DatabaseTable {
    * @param {*} document
    * @returns {boolean} whether the operation succeeded
    */
-  static updateDocument(changeId, document) {
-    let data;
-    if (this.data === undefined) {
-      data = JSON.parse(
-        fs.readFileSync(
-          `${process.cwd()}/data/${_tables.person.name}.json`,
-          "utf-8"
-        )
-      );
-    } else {
-      data = this.data;
-    }
+  updateDocument(changeId, document) {
+    let arr = [];
+    let data = JSON.parse(
+      fs.readFileSync(`${process.cwd()}/data/${this.name}.json`, "utf-8")
+    );
 
     if (changeId && document) {
       let obj = this.getDocument(changeId);
@@ -134,14 +116,18 @@ export default class DatabaseTable {
       }
 
       const objIndex = data.findIndex((obj) => obj.id === changeId);
+      data.splice(objIndex, 1);
 
-      let newArr = data.splice(objIndex, 1);
-      let arr = [...data];
-      arr.unshift(obj);
-      arr.pop();
+      if (data.lenght) {
+        arr = [...data];
+        arr.unshift(obj);
+        arr.pop();
+      } else {
+        arr.push(obj);
+      }
 
       fs.writeFileSync(
-        `${process.cwd()}/data/${_tables.person.name}.json`,
+        `${process.cwd()}/data/${this.name}.json`,
         JSON.stringify(arr, null, 2)
       );
       return true;
@@ -156,18 +142,11 @@ export default class DatabaseTable {
    * @param {number} id
    * @returns {boolean} whether the operation succeeded
    */
-  static deleteDocument(i) {
-    let data;
-    if (data === undefined) {
-      data = JSON.parse(
-        fs.readFileSync(
-          `${process.cwd()}/data/${_tables.person.name}.json`,
-          "utf-8"
-        )
-      );
-    } else {
-      data = this.data;
-    }
+  deleteDocument(i) {
+    let data = JSON.parse(
+      fs.readFileSync(`${process.cwd()}/data/${this.name}.json`)
+    );
+
     if (i) {
       const objIndex = data.findIndex((obj) => obj.id === i);
       let newArr = data.splice(objIndex, 1);
@@ -188,16 +167,10 @@ export default class DatabaseTable {
    * @param {number} offsetId
    * @returns {document[]}
    */
-  static indexDocuments() {
-    let data;
-    if (data === undefined) {
-      data = JSON.parse(
-        fs.readFileSync(
-          `${process.cwd()}/data/${_tables.person.name}.json`,
-          "utf-8"
-        )
-      );
-      return data.slice(0, 1);
-    }
+  indexDocuments() {
+    let data = JSON.parse(
+      fs.readFileSync(`${process.cwd()}/data/${this.name}.json`)
+    );
+    return data.slice(0, 1);
   }
 }

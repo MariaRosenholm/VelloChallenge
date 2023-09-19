@@ -9,7 +9,7 @@ describe("Database", () => {
     let id = null;
 
     test("Create person", (t) => {
-      const person = DatabaseTable.putDocument({
+      const person = db.putDocument({
         name: "test name",
         address: "testkatu 55",
         city: "Helsinki",
@@ -26,7 +26,7 @@ describe("Database", () => {
     });
 
     test("Test retrieving from database", (t) => {
-      const person = DatabaseTable.getDocument(id);
+      const person = db.getDocument(id);
 
       assert.equal(person.name, "test name");
       assert.equal(person.address, "testkatu 55");
@@ -36,14 +36,14 @@ describe("Database", () => {
     });
 
     test("Test updating a document", (t) => {
-      const status = DatabaseTable.updateDocument(id, {
+      const status = db.updateDocument(id, {
         address: "testtie 123",
         city: "Tampere",
       });
 
       assert.equal(status, true);
 
-      const person = DatabaseTable.getDocument(id);
+      const person = db.getDocument(id);
 
       assert.equal(person.name, "test name");
       assert.equal(person.address, "testtie 123");
@@ -53,7 +53,7 @@ describe("Database", () => {
     });
 
     test("Test indexing a document", (t) => {
-      const index = DatabaseTable.indexDocuments();
+      const index = db.indexDocuments();
 
       assert.equal(index.length, 1);
 
@@ -67,11 +67,11 @@ describe("Database", () => {
     });
 
     test("Test deleting a document", (t) => {
-      const status = DatabaseTable.deleteDocument(id);
+      const status = db.deleteDocument(id);
 
       assert.equal(status, true);
 
-      const person = DatabaseTable.getDocument(id);
+      const person = db.getDocument(id);
 
       assert.equal(person, null);
     });
