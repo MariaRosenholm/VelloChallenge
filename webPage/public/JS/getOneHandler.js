@@ -34,7 +34,6 @@
   }
 
   function updatePage(result) {
-    console.log("updatePage functional result" + result);
     if (result) {
       if (result.message) {
         updateMessageArea(result.message, result.type);

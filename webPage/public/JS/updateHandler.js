@@ -7,6 +7,7 @@
   let ageField;
   let addressField;
   let cityField;
+  let id;
 
   document.addEventListener("DOMContentLoaded", init);
 
@@ -47,14 +48,16 @@
       if (result.message) {
         updateMessageArea(result.message, result.type);
       } else {
-        updateTurtle(result);
+        updateFields(result);
       }
     } else {
       updateMessageArea("Not found");
     }
   }
 
-  function update(obj) {
+  function updateFields(obj) {
+    id = obj.id;
+    numberField.innerHTML = `${id}`;
     nameField.value = obj.name;
     ageField.value = obj.age;
     addressField.value = obj.address;
@@ -63,7 +66,7 @@
 
   async function update() {
     const obj = {
-      number: obj.number,
+      number: id,
       name: nameField.value,
       age: ageField.value,
       address: addressField.value,
@@ -80,8 +83,12 @@
       };
       const data = await fetch("/update", options);
       const resultJson = await data.json();
-      if (resultJson.message) {
-        updateMessageArea(resultJson.message, resultJson.type);
+      if (resultJson) {
+        if (resultJson === true) {
+          updateMessageArea("Update succesfull");
+        } else {
+          updateMessageArea("Error while updating");
+        }
       }
     } catch (err) {
       updateMessageArea(err.message);

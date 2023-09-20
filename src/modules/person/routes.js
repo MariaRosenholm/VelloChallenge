@@ -31,8 +31,8 @@ router.get("/:id", (req, res) => {
 /**
  * Update
  */
-router.put("/:id", (req, res) => {
-  let response = personTable.updateDocument({
+router.put("/:id", bodyParser.json(), (req, res) => {
+  let response = personTable.updateDocument(req.params.id, {
     id: req.body.id,
     name: req.body.name,
     age: req.body.age,

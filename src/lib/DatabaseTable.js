@@ -76,7 +76,7 @@ export default class DatabaseTable {
       fs.readFileSync(`${process.cwd()}/data/${this.name}.json`)
     );
 
-    if (data.lenght === 0) {
+    if (data.lenght === 0 || i === undefined) {
       return null;
     } else {
       if (data.find(({ id }) => id === i) === undefined) {
@@ -118,12 +118,12 @@ export default class DatabaseTable {
       const objIndex = data.findIndex((obj) => obj.id === changeId);
       data.splice(objIndex, 1);
 
-      if (data.lenght) {
+      if (data.length === 0) {
+        arr.push(obj);
+      } else {
         arr = [...data];
         arr.unshift(obj);
         arr.pop();
-      } else {
-        arr.push(obj);
       }
 
       fs.writeFileSync(

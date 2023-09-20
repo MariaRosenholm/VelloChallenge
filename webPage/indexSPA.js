@@ -63,10 +63,8 @@ app.put("/update", (req, res) => {
   };
   fetch(`http://localhost:3030/person/${id}`, options)
     .then((data) => data.json())
-    .then(
-      (result) => res.json(result) + console.log("indexSpa, update /" + result)
-    )
-    .catch((err) => res.json(err));
+    .then((result) => res.json(result))
+    .catch((err) => console.log("this is the error " + err) + res.json(err));
 });
 
 app.delete("/remove", (req, res) => {
