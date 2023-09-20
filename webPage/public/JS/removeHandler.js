@@ -15,7 +15,7 @@
     const number = inputField.value;
     try {
       const options = {
-        method: "POST",
+        method: "DELETE",
         body: JSON.stringify({ number }),
         headers: {
           "Content-Type": "application/json",
@@ -24,8 +24,12 @@
       const data = await fetch("/remove", options);
       const result = await data.json();
 
-      if (result.message) {
-        updateMessageArea(result.message, result.type);
+      if (result) {
+        if (result === true) {
+          updateMessageArea("Succesfull deletion!");
+        } else {
+          updateMessageArea("Error! Document not deleted!");
+        }
       }
     } catch (err) {
       updateMessageArea(err.message);

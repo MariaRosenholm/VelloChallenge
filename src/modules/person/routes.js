@@ -46,7 +46,8 @@ router.put("/:id", bodyParser.json(), (req, res) => {
  * Delete
  */
 router.delete("/:id", (req, res) => {
-  let response = personTable.deleteDocument(req.body.id);
+  console.log(req.params.id);
+  let response = personTable.deleteDocument(req.params.id);
   res.send(response);
 });
 

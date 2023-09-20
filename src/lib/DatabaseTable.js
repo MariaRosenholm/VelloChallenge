@@ -146,7 +146,7 @@ export default class DatabaseTable {
     let data = JSON.parse(
       fs.readFileSync(`${process.cwd()}/data/${this.name}.json`)
     );
-
+    console.log(i);
     if (i) {
       const objIndex = data.findIndex((obj) => obj.id === i);
       let newArr = data.splice(objIndex, 1);

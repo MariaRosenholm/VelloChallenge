@@ -7,13 +7,6 @@
     "city": "uuu"
   },
   {
-    "id": "3078",
-    "name": "Marfa Kaarel Äijäläinen",
-    "age": "32",
-    "address": "Luisakatu 8L 49",
-    "city": "Pyhäranta"
-  },
-  {
     "id": "22396",
     "name": "Tu Miikanpoika Sylvain Husam Toro",
     "age": "25",
@@ -7257,19 +7250,5 @@
     "age": "37",
     "address": "Haakontie 33H 34",
     "city": "Ylistaro"
-  },
-  {
-    "id": "23261",
-    "name": "Suzanne KirsiLiisa Kylli Pöysä",
-    "age": "57",
-    "address": "Zainabkatu 33Z 8",
-    "city": "Lieto"
-  },
-  {
-    "id": "25533",
-    "name": "Clifford Tomintytär Ari Unkeri",
-    "age": "42",
-    "address": "Herricktie 13H 1",
-    "city": "Sievi"
   }
 ]

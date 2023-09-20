@@ -75,10 +75,7 @@ app.delete("/remove", (req, res) => {
       mode: "cors",
     })
       .then((data) => data.json())
-      .then(
-        (result) =>
-          res.json(result) + console.log("indexSpa, remove /" + result)
-      )
+      .then((result) => res.json(result))
       .catch((err) => res.json(err));
   } else {
     res.json({ message: "empty number", type: "error" });
