@@ -34,6 +34,7 @@
   }
 
   function updatePage(result) {
+    console.log("updatePage functional result" + result);
     if (result) {
       if (result.message) {
         updateMessageArea(result.message, result.type);
@@ -47,7 +48,7 @@
 
   function update(obj) {
     resultArea.innerHTML = `
-    <p><span class="legend">Number: </span> ${obj.number} </p>
+    <p><span class="legend">Number: </span> ${obj.id} </p>
     <p><span class="legend">Name: </span> ${obj.name} </p>
     <p><span class="legend">Age: </span> ${obj.age} </p>
     <p><span class="legend">Address: </span> ${obj.address} </p>

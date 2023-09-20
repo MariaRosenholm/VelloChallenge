@@ -55,7 +55,6 @@
   }
 
   function update(obj) {
-    numberField.value = obj.number;
     nameField.value = obj.name;
     ageField.value = obj.age;
     addressField.value = obj.address;
@@ -64,7 +63,7 @@
 
   async function update() {
     const obj = {
-      number: numberField.value,
+      number: obj.number,
       name: nameField.value,
       age: ageField.value,
       address: addressField.value,
@@ -73,7 +72,7 @@
 
     try {
       const options = {
-        method: "POST",
+        method: "PUT",
         body: JSON.stringify(obj),
         headers: {
           "Content-Type": "application/json",

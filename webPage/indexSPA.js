@@ -23,10 +23,10 @@ app.get("/index", (req, res) => {
     .catch((err) => res.json(err) + console.log(err));
 });
 
-app.get("/getOne", (req, res) => {
-  const number = req.body.number;
-  if (number && number.length > 0) {
-    fetch(`http://localhost:3030/person/:id`, { mode: "cors" })
+app.post("/getOne", (req, res) => {
+  let id = req.body.number;
+  if (id && id.length > 0) {
+    fetch(`http://localhost:3030/person/${id}`, { mode: "cors" })
       .then((data) => data.json())
       .then(
         (result) =>
@@ -58,6 +58,7 @@ app.post("/add", (req, res) => {
 
 app.put("/update", (req, res) => {
   const obj = req.body;
+  const id = req.body.number;
   const options = {
     method: "PUT",
     mode: "cors",
@@ -66,7 +67,7 @@ app.put("/update", (req, res) => {
     },
     body: JSON.stringify(obj),
   };
-  fetch(`http://localhost:3030/person/:id`, options)
+  fetch(`http://localhost:3030/person/${id}`, options)
     .then((data) => data.json())
     .then(
       (result) => res.json(result) + console.log("indexSpa, update /" + result)
@@ -75,9 +76,9 @@ app.put("/update", (req, res) => {
 });
 
 app.delete("/remove", (req, res) => {
-  const number = req.body.number;
-  if (number && number.length > 0) {
-    fetch(`http://localhost:3030/person/:id`, {
+  const id = req.body.number;
+  if (id && id.length > 0) {
+    fetch(`http://localhost:3030/person/${id}`, {
       method: "DELETE",
       mode: "cors",
     })
@@ -91,8 +92,6 @@ app.delete("/remove", (req, res) => {
     res.json({ message: "empty number", type: "error" });
   }
 });
-
-// app.all("*", (req, res) => res.json("not supported"));
 
 server.listen(port, host, () =>
   console.log(`Server ${host}:${port} running...`)

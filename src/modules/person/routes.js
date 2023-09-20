@@ -22,7 +22,7 @@ router.post("/", (req, res) => {
  * Retrieve
  */
 router.get("/:id", (req, res) => {
-  let response = personTable.getDocument(req.body.id);
+  let response = personTable.getDocument(req.params.id);
   res.send(response);
 });
 

@@ -20,7 +20,7 @@
     } catch (err) {
       document.getElementById(
         "errorMessage"
-      ).innerHTML = `<p class="error">${err.message}</p> ${dataJSON}`;
+      ).innerHTML = `<p class="error">${err.message}</p>`;
     }
   }
   function createCell(data) {
