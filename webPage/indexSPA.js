@@ -17,9 +17,7 @@ app.get("/", (req, res) =>
 app.get("/index", (req, res) => {
   fetch("http://localhost:3030/person/", { mode: "cors" })
     .then((data) => data.json())
-    .then(
-      (result) => res.json(result) + console.log("indexSpa, get /" + result)
-    )
+    .then((result) => res.json(result))
     .catch((err) => res.json(err) + console.log(err));
 });
 
@@ -28,10 +26,7 @@ app.post("/getOne", (req, res) => {
   if (id && id.length > 0) {
     fetch(`http://localhost:3030/person/${id}`, { mode: "cors" })
       .then((data) => data.json())
-      .then(
-        (result) =>
-          res.json(result) + console.log("indexSpa, getOne /" + result)
-      )
+      .then((result) => res.json(result))
       .catch((err) => res.json(err));
   } else {
     res.json({ message: "empty number", type: "error" });
@@ -39,20 +34,19 @@ app.post("/getOne", (req, res) => {
 });
 
 app.post("/add", (req, res) => {
-  const obj = req.body;
+  const obj = JSON.stringify(req.body);
   const options = {
     method: "POST",
     mode: "cors",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(obj),
+    body: obj,
   };
+
   fetch("http://localhost:3030/person/", options)
     .then((data) => data.json())
-    .then(
-      (result) => res.json(result) + console.log("indexSpa, add /" + result)
-    )
+    .then((result) => res.json(result))
     .catch((err) => res.json(err));
 });
 

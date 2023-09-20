@@ -1,5 +1,6 @@
 import express from "express";
 import database from "../../lib/database.js";
+import bodyParser from "body-parser";
 
 const personTable = database.getTable("person");
 
@@ -8,12 +9,13 @@ const router = express.Router();
 /**
  * Create
  */
-router.post("/", (req, res) => {
+router.post("/", bodyParser.json(), (req, res) => {
+  const obj = req.body;
   let response = personTable.putDocument({
-    name: req.body.name,
-    age: req.body.age,
-    address: req.body.address,
-    city: req.body.city,
+    name: obj.name,
+    age: obj.age,
+    address: obj.address,
+    city: obj.city,
   });
   res.send(response);
 });

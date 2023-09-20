@@ -1,32 +1,44 @@
 "use strict";
 
 (function () {
-  let numberField;
   let nameField;
   let ageField;
   let addressField;
   let cityField;
+  let messageArea;
 
   document.addEventListener("DOMContentLoaded", init);
 
   function init() {
-    numberField = document.getElementById("number");
     nameField = document.getElementById("name");
     ageField = document.getElementById("age");
     addressField = document.getElementById("address");
-    cityField = document.getElementById("weight");
+    cityField = document.getElementById("city");
+    messageArea = document.getElementById("messageArea");
 
     document.getElementById("submit").addEventListener("click", send);
   }
 
+  function updateMessageArea(obj) {
+    console.log(typeof obj);
+    if (!obj.name) {
+      messageArea.innerHTML = `Error: ${obj}`;
+    } else {
+      messageArea.innerHTML = `
+      <p><span class="legend">Number: </span> ${obj.id} </p>
+      <p><span class="legend">Name: </span> ${obj.name} </p>
+      <p><span class="legend">Age: </span> ${obj.age} </p>
+      <p><span class="legend">Address: </span> ${obj.address} </p>
+      <p><span class="legend">City: </span> ${obj.city} </p>`;
+    }
+  }
+
   async function send() {
-    clearMessageArea();
     const obj = {
-      number: numberField.value,
       name: nameField.value,
       age: ageField.value,
-      adderssField: addressField.value,
-      cityField: cityField.value,
+      address: addressField.value,
+      city: cityField.value,
     };
 
     try {
@@ -39,8 +51,8 @@
       };
       const data = await fetch("/add", options);
       const resultJson = await data.json();
-      if (resultJson.message) {
-        updateMessageArea(resultJson.message, resultJson.type);
+      if (resultJson) {
+        updateMessageArea(resultJson);
       }
     } catch (err) {
       updateMessageArea(err.message);

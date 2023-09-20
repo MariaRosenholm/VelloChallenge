@@ -50,12 +50,12 @@ export default class DatabaseTable {
       city: document.city,
     };
 
-    if (data.lenght) {
+    if (data.length === 0) {
+      arr.push(obj);
+    } else {
       arr = [...data];
       arr.unshift(obj);
       arr.pop();
-    } else {
-      arr.push(obj);
     }
 
     fs.writeFileSync(
