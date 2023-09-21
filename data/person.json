@@ -1,10 +1,10 @@
 [
   {
-    "id": "18866",
-    "name": "Tes1",
-    "age": "80",
-    "address": "tesa",
-    "city": "uuu"
+    "id": 6519,
+    "name": "Maria Rosenholm",
+    "age": "32",
+    "address": "Jeejee",
+    "city": "Espoo"
   },
   {
     "id": "22396",
@@ -7236,19 +7236,5 @@
     "age": "28",
     "address": "HenriMatiaskatu 43H 8",
     "city": "Mäntsälä"
-  },
-  {
-    "id": "21459",
-    "name": "Jaroslav Leppioja",
-    "age": "61",
-    "address": "Özlemtie 32Ö 47",
-    "city": "Ikaalinen"
-  },
-  {
-    "id": "11754",
-    "name": "Artan Untamo Fadumo Airisto",
-    "age": "37",
-    "address": "Haakontie 33H 34",
-    "city": "Ylistaro"
   }
 ]

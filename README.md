@@ -7,6 +7,7 @@ Please find the provided steps from Vello that I followed to complete challenge.
 To run the SPA:
 
 ```
+$ npm run installSPA
 $ npm run SPA
 ```
 
