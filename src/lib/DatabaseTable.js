@@ -47,7 +47,9 @@ export default class DatabaseTable {
 
     let arr = [];
     let obj = {
-      id: Math.floor(Math.random() * 10000),
+      id: JSON.stringify(
+        Math.floor(Math.random() * (100000 - data.length + 1) + data.length + 1)
+      ),
       name: document.name,
       age: document.age,
       address: document.address,
