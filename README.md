@@ -11,6 +11,8 @@ $ npm run installSPA
 $ npm run SPA
 ```
 
+Please note that the data importing will take 30s and after successfully completed text: Data successfully imported!" will appear to the console.
+
 # Welcome to the Vello coding challenge! Your mission is to finish some of the functionality of this application.
 
 ## We'd like for you to spend around an hour or two on the task.

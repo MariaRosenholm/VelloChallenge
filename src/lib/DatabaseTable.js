@@ -38,9 +38,13 @@ export default class DatabaseTable {
    * @returns {document} the created document, including a new unique ID
    */
   putDocument(document) {
-    let data = JSON.parse(
-      fs.readFileSync(`${process.cwd()}/data/${this.name}.json`, "utf-8")
+    let data = fs.readFileSync(
+      `${process.cwd()}/data/${this.name}.json`,
+      "utf-8"
     );
+
+    if (data.length !== 0) data = JSON.parse(data);
+
     let arr = [];
     let obj = {
       id: Math.floor(Math.random() * 10000),
@@ -72,11 +76,14 @@ export default class DatabaseTable {
    * @returns {document | null} document or null if not found
    */
   getDocument(i) {
-    let data = JSON.parse(
-      fs.readFileSync(`${process.cwd()}/data/${this.name}.json`)
+    let data = fs.readFileSync(
+      `${process.cwd()}/data/${this.name}.json`,
+      "utf-8"
     );
 
-    if (data.lenght === 0 || i === undefined) {
+    if (data.length !== 0) data = JSON.parse(data);
+
+    if (data.length === 0 || i === undefined) {
       return null;
     } else {
       if (data.find(({ id }) => id === i) === undefined) {
@@ -96,9 +103,12 @@ export default class DatabaseTable {
    */
   updateDocument(changeId, document) {
     let arr = [];
-    let data = JSON.parse(
-      fs.readFileSync(`${process.cwd()}/data/${this.name}.json`, "utf-8")
+    let data = fs.readFileSync(
+      `${process.cwd()}/data/${this.name}.json`,
+      "utf-8"
     );
+
+    if (data.length !== 0) data = JSON.parse(data);
 
     if (changeId && document) {
       let obj = this.getDocument(changeId);
@@ -143,10 +153,13 @@ export default class DatabaseTable {
    * @returns {boolean} whether the operation succeeded
    */
   deleteDocument(i) {
-    let data = JSON.parse(
-      fs.readFileSync(`${process.cwd()}/data/${this.name}.json`)
+    let data = fs.readFileSync(
+      `${process.cwd()}/data/${this.name}.json`,
+      "utf-8"
     );
-    console.log(i);
+
+    if (data.length !== 0) data = JSON.parse(data);
+
     if (i) {
       const objIndex = data.findIndex((obj) => obj.id === i);
       let newArr = data.splice(objIndex, 1);
@@ -168,9 +181,13 @@ export default class DatabaseTable {
    * @returns {document[]}
    */
   indexDocuments() {
-    let data = JSON.parse(
-      fs.readFileSync(`${process.cwd()}/data/${this.name}.json`)
+    let data = fs.readFileSync(
+      `${process.cwd()}/data/${this.name}.json`,
+      "utf-8"
     );
-    return data.slice(0, 1);
+
+    if (data.length !== 0) return JSON.parse(data).slice(0, 1);
+
+    return undefined;
   }
 }
