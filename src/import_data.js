@@ -76,9 +76,7 @@ const transferData = function () {
 };
 
 const writeJSONfile = async () => {
-  fs.writeFileSync("./data/person.json", "[", {
-    flag: "a+",
-  });
+  fs.writeFileSync("./data/person.json", "[");
   await readData();
   await transferData();
   fs.writeFileSync("./data/person.json", "]", {
