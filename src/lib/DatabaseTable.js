@@ -93,10 +93,10 @@ export default class DatabaseTable {
     if (data.length === 0 || i === undefined) {
       return null;
     } else {
-      if (data.find(({ id }) => id === i) === undefined) {
+      if (data.find(({ id }) => id === parseInt(i)) === undefined) {
         return null;
       } else {
-        return data.find(({ id }) => id === i);
+        return data.find(({ id }) => id === parseInt(i));
       }
     }
   }
@@ -132,7 +132,7 @@ export default class DatabaseTable {
         obj.city = document.city;
       }
 
-      const objIndex = data.findIndex((obj) => obj.id === changeId);
+      const objIndex = data.findIndex((obj) => obj.id === parseInt(changeId));
       data.splice(objIndex, 1);
 
       if (data.length === 0) {
@@ -168,7 +168,7 @@ export default class DatabaseTable {
     if (data.length !== 0) data = JSON.parse(data);
 
     if (i) {
-      const objIndex = data.findIndex((obj) => obj.id === i);
+      const objIndex = data.findIndex((obj) => obj.id === parseInt(i));
       let newArr = data.splice(objIndex, 1);
       fs.writeFileSync(
         `${process.cwd()}/data/${_tables.person.name}.json`,
