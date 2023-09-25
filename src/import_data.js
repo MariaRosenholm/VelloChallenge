@@ -37,7 +37,7 @@ const readData = function () {
 
         for (let i = 0; i < arrays.length; i++) {
           arrays[i].forEach((value) => {
-            obj[labelNames[0]] = value[0];
+            obj[labelNames[0]] = parseInt(value[0]);
             obj[labelNames[1]] = value[1];
             obj[labelNames[2]] = value[2];
             obj[labelNames[3]] = value[3];
