@@ -21,6 +21,11 @@ export default class DatabaseTable {
     // For test purposes, we allow passing data.
     if (data) {
       this.data = data;
+      let arr = [data];
+      fs.writeFileSync(
+        `${process.cwd()}/data/${this.name}.json`,
+        JSON.stringify(arr, null, 2)
+      );
     } else {
       try {
         this.data = JSON.parse(fs.readFileSync(fileDir, "utf-8"));
